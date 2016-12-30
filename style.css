@@ -1,0 +1,29 @@
+
+h1 {
+  color: deeppink;
+  font-size: 2em;
+}
+.hole {
+  background-color: gold !important;
+  display: inline-block;
+  margin: 10px 0 0 10px;
+  width: 100px;
+  height: 100px;
+  color: gold;
+}
+
+.move {
+  width: 100px;
+  height: 100px;
+  background-color: deeppink;
+  position: relative;
+  display: inline-block;
+  margin: 10px 0 0 10px;
+}
+
+.gamefield {
+  background: gold;
+  width: 450px;
+  height: 450px;
+  position: relative;
+}
