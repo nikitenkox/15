@@ -6,7 +6,7 @@ $(document).ready(function() {
 
     createField(game.array);
     var items = $('.move');
-    items.click(function(event) {
+    items.on('click swipe', function(event) {
 
         var index = $(this).index();
         var holePos = game.array.indexOf('hole')
