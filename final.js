@@ -3,14 +3,50 @@ game.array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 'hole'];
 
 $(document).ready(function() {
     game.array = shuffle(game.array);
+
     createField(game.array);
     var items = $('.move');
     items.click(function(event) {
+
+        var index = $(this).index();
+        var holePos = game.array.indexOf('hole')
         makeTurn(game.array, $(this).index());
-        reflectTurn()
-        if (chechWin(game.array)) {
-            alert('you win')
+
+        // анимация
+        if ((index == holePos - 1) && (index % 4 !== 3)) {
+            $(this).css("z-index", "100").animate({
+                right: '-=110px'
+            }, 900).animate({
+                right: '+=110px'
+            }, 0);
+        } else if ((index == holePos + 1) && (index % 4 !== 0)) {
+            $(this).css("z-index", "100").animate({
+                right: '+=110px'
+            }, 900).animate({
+                right: '-=110px'
+            }, 0);
+        } else if (index == holePos - 4) {
+            $(this).css("z-index", "100").animate({
+                top: '+=110px'
+            }, 900).animate({
+                top: '-=110px'
+            }, 0);
+        } else if (index == holePos + 4) {
+            $(this).css("z-index", "100").animate({
+                top: '-=110px'
+            }, 900).animate({
+                top: '+=110px'
+            }, 0);
         }
+
+        $(this).delay(0).queue(function(next) {
+            $(this).css("z-index", "10");
+            reflectTurn();
+            if (chechWin(game.array)) {
+                alert('you win')
+            }
+            next();
+        });
     })
 })
 
