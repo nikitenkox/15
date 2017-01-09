@@ -24,6 +24,7 @@ h1 {
   position: relative;
   display: inline-block;
   margin: 10px 0 0 10px;
+  cursor: pointer;
   z-index: 10;
 }
 
