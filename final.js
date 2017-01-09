@@ -14,8 +14,43 @@ $(document).ready(function() {
         var hole = $('.hole');
         game.index = self.index();
         game.holePos = game.array.indexOf(0);
-        
-        turn(game.array, game.index, game.holePos);
+        hole.css('z-index', '1');
+        self.css('z-index', '10');
+
+        //  анимация
+        if ((game.index == game.holePos - 1) && (game.index % 4 !== 3)) {
+            self.animate({
+                right: '-=110px'
+            }, 200).animate({
+                right: '+=110px'
+            }, 0, function() {
+                turn(game.array, game.index, game.holePos);
+            })
+        } else if ((game.index == game.holePos + 1) && (game.index % 4 !== 0)) {
+            self.animate({
+                right: '+=110px'
+            }, 200).animate({
+                right: '-=110px'
+            }, 0, function() {
+                turn(game.array, game.index, game.holePos);
+            })
+        } else if (game.index == game.holePos + 4) {
+            self.animate({
+                top: '-=110px'
+            }, 200).animate({
+                top: '+=110px'
+            }, 0, function() {
+                turn(game.array, game.index, game.holePos);
+            })
+        } else if (game.index == game.holePos - 4) {
+            self.animate({
+                top: '+=110px'
+            }, 200).animate({
+                top: '-=110px'
+            }, 0, function() {
+                turn(game.array, game.index, game.holePos);
+            })
+        }
 
         if (chechWin(game.array)) {
             alert('win');
