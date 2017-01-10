@@ -56,7 +56,7 @@ $(document).ready(function() {
         setTimeout(function() {
             if (chechWin(game.array)) {
                 alert('win');
-                game.array = shuffle(game.array);
+                createField(shuffle(game.array));
             }
         }, 250);
     })
