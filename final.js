@@ -3,6 +3,7 @@ game.array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
 $(document).ready(function() {
     game.array = shuffle(game.array);
+
     game.field = $('.gamefield');
 
     createField(game.array);
@@ -52,10 +53,12 @@ $(document).ready(function() {
             })
         }
 
-        if (chechWin(game.array)) {
-            alert('win');
-            location.reload();
-        }
+        setTimeout(function() {
+            if (chechWin(game.array)) {
+                alert('win');
+                game.array = shuffle(game.array);
+            }
+        }, 250);
     })
 })
 
@@ -72,7 +75,7 @@ function turn(arr, index, hole) {
     if (isPossibleToTurn(index, hole)) {
         game.items[hole].innerHTML = game.items[index].innerHTML;
         game.items[hole].classList.remove('hole');
-        game.items[index].innerHTML = 0;
+        game.items[index].innerHTML = '';
         game.items[index].classList.add('hole');
         return swap(arr, index, hole);
     }
@@ -86,7 +89,7 @@ function createField(array) {
         if (array[k] !== 0) {
             game.field.append(item.addClass('move').text(array[k]));
         } else {
-            game.field.append(item.addClass('move hole').text(array[k]));
+            game.field.append(item.addClass('move hole').text(''));
         }
     }
 }
@@ -108,7 +111,7 @@ function isDecidable(arr) {
     return ((c + h) % 2 == 0) ? true : false;
 }
 
-// получение перемешеного масива, решение которого существует
+// получение перемешaного масcива, решение которого существует
 function shuffle(arr) {
     var b = true;
     while (b) {
@@ -133,7 +136,7 @@ function isPossibleToTurn(index, holePos) {
     }
 }
 
-// проверака, достигнута ли победа
+// проверка, достигнута ли победа
 function chechWin(array) {
     var c = 0;
     array.forEach(function(elem, i) {

@@ -3,12 +3,17 @@ h1 {
   color: deeppink;
   font-size: 2em;
 }
+
 .hole {
   background-color: gold !important;
   display: inline-block;
   margin: 10px 0 0 10px;
   width: 100px;
   height: 100px;
+}
+
+.hole::before {
+  content: '-';
   color: gold !important;
 }
 
