@@ -18,7 +18,6 @@ $(document).ready(function() {
         hole.css('z-index', '1');
         self.css('z-index', '10');
 
-        //  анимация
         if ((game.index == game.holePos - 1) && (game.index % 4 !== 3)) {
             self.animate({
                 right: '-=110px'
@@ -62,7 +61,6 @@ $(document).ready(function() {
     })
 })
 
-// меняем местами елементы массива игры
 function swap(arr, x, y) {
     var tmp = arr[x];
     arr[x] = arr[y];
@@ -70,7 +68,6 @@ function swap(arr, x, y) {
     return arr;
 }
 
-// делаем ход и отображаем его
 function turn(arr, index, hole) {
     if (isPossibleToTurn(index, hole)) {
         game.items[hole].innerHTML = game.items[index].innerHTML;
@@ -81,7 +78,6 @@ function turn(arr, index, hole) {
     }
 }
 
-// создаем игровое поле
 function createField(array) {
     game.field.text('');
     for (var k = 0; k < 16; k++) {
@@ -94,7 +90,6 @@ function createField(array) {
     }
 }
 
-// проверка массива игры на существование решения
 function isDecidable(arr) {
     var c = 0;
     var h = 1 + (arr.indexOf(0) - (arr.indexOf(0) % 4)) / 4;
@@ -111,7 +106,6 @@ function isDecidable(arr) {
     return ((c + h) % 2 == 0) ? true : false;
 }
 
-// получение перемешaного масcива, решение которого существует
 function shuffle(arr) {
     var b = true;
     while (b) {
@@ -125,7 +119,6 @@ function shuffle(arr) {
     return arr;
 }
 
-// проверка на возможность хода в ячейку (ход по правилам)
 function isPossibleToTurn(index, holePos) {
     if ((index == holePos + 1) && (index % 4 !== 0) ||
         (index == holePos - 1) && (index % 4 !== 3) ||
@@ -136,7 +129,6 @@ function isPossibleToTurn(index, holePos) {
     }
 }
 
-// проверка, достигнута ли победа
 function chechWin(array) {
     var c = 0;
     array.forEach(function(elem, i) {
